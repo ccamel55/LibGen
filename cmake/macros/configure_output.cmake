@@ -4,13 +4,8 @@ macro(lib_gen_configure_output target)
     set(lib_gen_output_file "${lib_gen_output_dir}/compiler-output-${target}.txt.")
     set(lib_gen_output_include_folder "${lib_gen_output_dir}/minimal_include-${target}")
 
-    # remove folder tmp folder if it exits, else create it an add predefined files
-    if (EXISTS ${lib_gen_output_include_folder})
-        file(REMOVE_RECURSE ${lib_gen_output_include_folder})
-
-    else()
-        file(WRITE ${lib_gen_output_file} "")
-    endif ()
+    # make sure that the output file exits
+    file(WRITE ${lib_gen_output_file} "")
 
     message(STATUS "=======================================================================================================")
 

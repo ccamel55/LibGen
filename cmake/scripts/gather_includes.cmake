@@ -1,3 +1,8 @@
+# remove old include files before gathering new ones
+if (EXISTS ${lib_gen_output_include_folder})
+    file(REMOVE_RECURSE ${lib_gen_output_include_folder})
+endif ()
+
 message(STATUS "=======================================================================================================")
 message(STATUS "Starting to gather includes, include files read from ${lib_gen_output_file}")
 
@@ -6,7 +11,7 @@ file(STRINGS ${lib_gen_output_file} lib_gen_used_includes)
 
 # only keep includes that have our project name somewhere in them, discard the rest
 message(STATUS "${lib_gen_project_path}")
-list(FILTER lib_gen_used_includes INCLUDE REGEX ".*${lib_gen_project_name}.*$")
+list(FILTER lib_gen_used_includes INCLUDE REGEX ".*${lib_gen_project_name}.*.(hpp|h|hh)$")
 
 message(STATUS "Found includes, creating minimal include directory at ${lib_gen_output_include_folder}")
 
