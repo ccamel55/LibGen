@@ -45,6 +45,7 @@ macro(lib_gen_configure_output target)
 
             # define script file to call
             -P ${lib_gen_module_path}/scripts/gather_includes.cmake
+            -P ${lib_gen_module_path}/scripts/gather_libraries.cmake
     )
 
 endmacro()

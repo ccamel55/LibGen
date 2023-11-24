@@ -10,7 +10,7 @@ include(cmake/lib_gen.cmake)
 # include the library we want to generate a minimal library for
 add_subdirectory(library)
 
-add_library(${PROJECT_NAME} LibGenProxy.cpp)
+add_library(${PROJECT_NAME} STATIC LibGenProxy.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
         include
