@@ -7,7 +7,9 @@ set(lib_gen_project_name ${PROJECT_NAME})
 include(${lib_gen_module_path}/macros/configure_output.cmake)
 
 # make sure we are using clang or gcc
-if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND
+        NOT CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND
+        NOT CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
     message(FATAL_ERROR "Current compiler ${CMAKE_CXX_COMPILER_ID} not supported, please use clang or gcc.")
 endif()
 

@@ -1,8 +1,8 @@
 # setup launcher to output std::err logs to a specific file for a defined target
 macro(lib_gen_configure_output target)
 
-    set(lib_gen_output_file "${lib_gen_output_dir}/compiler-output-${target}.txt.")
-    set(lib_gen_output_include_folder "${lib_gen_output_dir}/minimal_include-${target}")
+    set(lib_gen_output_file "${lib_gen_output_dir}/compiler-output-${lib_gen_project_name}.txt")
+    set(lib_gen_output_include_folder "${lib_gen_output_dir}/minimal_include-${lib_gen_project_name}")
 
     # make sure that the output file exits
     file(WRITE ${lib_gen_output_file} "")
@@ -23,8 +23,7 @@ macro(lib_gen_configure_output target)
     else ()
 
         # on nix based OS, we can use redirect at start of command in bash, used headers are also outputted to stderr
-        # todo: test this works on mac/linux
-        set_property(TARGET ${target} PROPERTY CXX_COMPILER_LAUNCHER bash -c 2> ${lib_gen_output_file})
+        set_property(TARGET ${target} PROPERTY CXX_COMPILER_LAUNCHER 2> ${lib_gen_output_file})
         message(STATUS "Host device: ${CMAKE_HOST_SYSTEM}, using bash to run compiler.")
 
     endif ()

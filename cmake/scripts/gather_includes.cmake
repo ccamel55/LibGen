@@ -16,13 +16,15 @@ message(STATUS "Found includes, creating minimal include directory at ${lib_gen_
 
 foreach (used_include ${lib_gen_used_includes})
 
-    # remove everything upto the last space character seen
+    # remove everything up to the last space character seen, this is remove any prefixes before the
+    # absolute path to the included file
     string(REGEX REPLACE "(.*) " "" used_include "${used_include}")
 
     # remove everything up to the include folder
     string(REGEX REPLACE "(.*)include" "" used_include_folder_path ${used_include})
 
-    # copy everything into the correct include directory
+    # copy everything into the correct include directory,
+    # todo: dont copy
     configure_file(${used_include} ${lib_gen_output_include_folder}/${used_include_folder_path} COPYONLY)
 
 endforeach ()
